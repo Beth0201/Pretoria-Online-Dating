@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Genuine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+    <!-- Admin Navigation -->
+    <nav class="admin-nav">
+        <div class="admin-nav-container">
+            <div class="admin-logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M16 4C16 4 8 8 8 16C8 20 10 24 16 28C22 24 24 20 24 16C24 8 16 4 16 4Z" fill="currentColor"/>
+                    <circle cx="16" cy="16" r="4" fill="white"/>
+                </svg>
+                <span>Genuine Admin</span>
+            </div>
+            <div class="admin-nav-right">
+                <button class="btn-refresh" onclick="refreshData()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0118.8-4.3M22 12.5a10 10 0 01-18.8 4.2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Refresh
+                </button>
+                <div class="admin-user">
+                    <span>Admin</span>
+                    <a href="index.html" class="btn-logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <!-- Overview Stats -->
+        <section class="stats-overview">
+            <h2>Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card-admin">
+                    <div class="stat-header">
+                        <div class="stat-icon" style="background: rgba(212, 134, 111, 0.1); color: var(--color-primary);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <span class="stat-label">Total Users</span>
+                    </div>
+                    <div class="stat-value" id="totalUsers">1,247</div>
+                    <div class="stat-change positive">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>+12% from last month</span>
+                    </div>
+                </div>
+
+                <div class="stat-card-admin">
+                    <div class="stat-header">
+                        <div class="stat-icon" style="background: rgba(111, 157, 134, 0.1); color: var(--color-secondary);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="8.5" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                                <path d="M20 8v6M23 11h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <span class="stat-label">New Signups Today</span>
+                    </div>
+                    <div class="stat-value" id="signupsToday">23</div>
+                    <div class="stat-change positive">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>+5 from yesterday</span>
+                    </div>
+                </div>
+
+                <div class="stat-card-admin">
+                    <div class="stat-header">
+                        <div class="stat-icon" style="background: rgba(232, 197, 71, 0.1); color: var(--color-accent);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <span class="stat-label">Revenue This Month</span>
+                    </div>
+                    <div class="stat-value" id="revenueMonth">R 42,385</div>
+                    <div class="stat-change positive">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>+28% from last month</span>
+                    </div>
+                </div>
+
+                <div class="stat-card-admin">
+                    <div class="stat-header">
+                        <div class="stat-icon" style="background: rgba(212, 134, 111, 0.1); color: var(--color-primary);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <span class="stat-label">Active Users (24h)</span>
+                    </div>
+                    <div class="stat-value" id="activeUsers">487</div>
+                    <div class="stat-change neutral">
+                        <span>39% of total users</span>
+                    </div>
+                </div>
+
+                <div class="stat-card-admin">
+                    <div class="stat-header">
+                        <div class="stat-icon" style="background: rgba(111, 157, 134, 0.1); color: var(--color-secondary);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <span class="stat-label">Premium Subscribers</span>
+                    </div>
+                    <div class="stat-value" id="premiumUsers">284</div>
+                    <div class="stat-change positive">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>22.8% conversion rate</span>
+                    </div>
+                </div>
+
+                <div class="stat-card-admin">
+                    <div class="stat-header">
+                        <div class="stat-icon" style="background: rgba(232, 197, 71, 0.1); color: var(--color-accent);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <span class="stat-label">Matches Made</span>
+                    </div>
+                    <div class="stat-value" id="totalMatches">3,421</div>
+                    <div class="stat-change positive">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>+156 this week</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="charts-section">
+            <div class="chart-row">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Signups Over Time</h3>
+                        <select class="chart-filter" onchange="updateSignupsChart(this.value)">
+                            <option value="7">Last 7 Days</option>
+                            <option value="30" selected>Last 30 Days</option>
+                            <option value="90">Last 90 Days</option>
+                        </select>
+                    </div>
+                    <canvas id="signupsChart"></canvas>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Revenue Breakdown</h3>
+                        <span class="chart-total">Total: R 42,385</span>
+                    </div>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-row">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>User Demographics</h3>
+                    </div>
+                    <div class="demographics-grid">
+                        <div class="demo-item">
+                            <span class="demo-label">Age 18-24</span>
+                            <div class="demo-bar">
+                                <div class="demo-fill" style="width: 22%"></div>
+                            </div>
+                            <span class="demo-value">22%</span>
+                        </div>
+                        <div class="demo-item">
+                            <span class="demo-label">Age 25-34</span>
+                            <div class="demo-bar">
+                                <div class="demo-fill" style="width: 45%"></div>
+                            </div>
+                            <span class="demo-value">45%</span>
+                        </div>
+                        <div class="demo-item">
+                            <span class="demo-label">Age 35-44</span>
+                            <div class="demo-bar">
+                                <div class="demo-fill" style="width: 23%"></div>
+                            </div>
+                            <span class="demo-value">23%</span>
+                        </div>
+                        <div class="demo-item">
+                            <span class="demo-label">Age 45+</span>
+                            <div class="demo-bar">
+                                <div class="demo-fill" style="width: 10%"></div>
+                            </div>
+                            <span class="demo-value">10%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Top Cities</h3>
+                    </div>
+                    <div class="cities-list">
+                        <div class="city-item">
+                            <span class="city-name">Johannesburg</span>
+                            <span class="city-count">412 users</span>
+                            <div class="city-bar">
+                                <div class="city-fill" style="width: 33%"></div>
+                            </div>
+                        </div>
+                        <div class="city-item">
+                            <span class="city-name">Cape Town</span>
+                            <span class="city-count">368 users</span>
+                            <div class="city-bar">
+                                <div class="city-fill" style="width: 29.5%"></div>
+                            </div>
+                        </div>
+                        <div class="city-item">
+                            <span class="city-name">Pretoria</span>
+                            <span class="city-count">187 users</span>
+                            <div class="city-bar">
+                                <div class="city-fill" style="width: 15%"></div>
+                            </div>
+                        </div>
+                        <div class="city-item">
+                            <span class="city-name">Durban</span>
+                            <span class="city-count">145 users</span>
+                            <div class="city-bar">
+                                <div class="city-fill" style="width: 11.6%"></div>
+                            </div>
+                        </div>
+                        <div class="city-item">
+                            <span class="city-name">Other</span>
+                            <span class="city-count">135 users</span>
+                            <div class="city-bar">
+                                <div class="city-fill" style="width: 10.8%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Signups -->
+        <section class="recent-signups">
+            <div class="section-header-admin">
+                <h3>Recent Signups</h3>
+                <a href="#" class="btn-view-all">View All</a>
+            </div>
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Location</th>
+                            <th>Age</th>
+                            <th>Membership</th>
+                            <th>Signed Up</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentSignupsTable">
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="user-avatar-small">S</div>
+                                    <span>Sarah M.</span>
+                                </div>
+                            </td>
+                            <td>sarah.m@email.com</td>
+                            <td>Cape Town</td>
+                            <td>28</td>
+                            <td><span class="badge-membership premium">Premium</span></td>
+                            <td>2 hours ago</td>
+                            <td><span class="badge-status active">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="user-avatar-small">J</div>
+                                    <span>John D.</span>
+                                </div>
+                            </td>
+                            <td>john.d@email.com</td>
+                            <td>Johannesburg</td>
+                            <td>32</td>
+                            <td><span class="badge-membership free">Free</span></td>
+                            <td>3 hours ago</td>
+                            <td><span class="badge-status active">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="user-avatar-small">M</div>
+                                    <span>Maya R.</span>
+                                </div>
+                            </td>
+                            <td>maya.r@email.com</td>
+                            <td>Pretoria</td>
+                            <td>26</td>
+                            <td><span class="badge-membership plus">Plus</span></td>
+                            <td>5 hours ago</td>
+                            <td><span class="badge-status active">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="user-avatar-small">T</div>
+                                    <span>Thabo N.</span>
+                                </div>
+                            </td>
+                            <td>thabo.n@email.com</td>
+                            <td>Durban</td>
+                            <td>35</td>
+                            <td><span class="badge-membership free">Free</span></td>
+                            <td>7 hours ago</td>
+                            <td><span class="badge-status pending">Pending Verification</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="user-avatar-small">L</div>
+                                    <span>Lisa K.</span>
+                                </div>
+                            </td>
+                            <td>lisa.k@email.com</td>
+                            <td>Cape Town</td>
+                            <td>29</td>
+                            <td><span class="badge-membership premium">Premium</span></td>
+                            <td>12 hours ago</td>
+                            <td><span class="badge-status active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <h3>Quick Actions</h3>
+            <div class="actions-grid">
+                <button class="action-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Add New User</span>
+                </button>
+                <button class="action-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Export Data</span>
+                </button>
+                <button class="action-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M22 6l-10 7L2 6" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>Send Newsletter</span>
+                </button>
+                <button class="action-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>View Reports</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
